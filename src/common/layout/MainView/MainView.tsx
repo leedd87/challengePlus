@@ -1,14 +1,17 @@
-import React from 'react';
-import {View, ViewProps} from 'react-native';
+import React, {ReactNode} from 'react';
+import {View, ViewProps, ViewStyle} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface MainViewProps extends ViewProps {
-  children: React.ReactElement;
+  children: ReactNode;
+  style?: ViewStyle;
 }
 
-export const MainView = ({children}: MainViewProps) => {
+export const MainView = ({children, style, ...props}: MainViewProps) => {
   const {top, bottom} = useSafeAreaInsets();
   return (
-    <View style={{paddingTop: top, paddingBottom: bottom}}>{children}</View>
+    <View style={[{paddingTop: top, paddingBottom: bottom}, style]} {...props}>
+      {children}
+    </View>
   );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {MainView} from '../../common';
+import {MainView} from '../../../common';
 
-export const HomeScreen = () => {
+export const RegisterScreen = () => {
   return (
     <MainView>
-      <Text>Home</Text>
+      <Text>Register</Text>
     </MainView>
   );
 };
