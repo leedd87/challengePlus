@@ -1,16 +1,23 @@
 import React, {useCallback} from 'react';
 import {View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+
 import {Button, Input, MainView} from '../../../common';
 import {sharedStyles} from '../sharedStyles';
+import {NavigationType} from '../types';
 
 export const RegisterScreen = () => {
+  const navigation = useNavigation<NavigationType>();
+
   const onPressCreate = useCallback(() => {
     console.log('Create account');
   }, []);
 
   const onPressHaveAccount = useCallback(() => {
     console.log('Have Account');
-  }, []);
+    navigation.navigate('Login');
+  }, [navigation]);
+
   return (
     <MainView style={sharedStyles.container}>
       <Input placeholder="email" />
