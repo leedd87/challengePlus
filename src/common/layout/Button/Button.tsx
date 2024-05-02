@@ -2,18 +2,21 @@ import React from 'react';
 import {
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  TouchableWithoutFeedbackProps,
   ViewStyle,
 } from 'react-native';
 
-interface ButtonProps extends TouchableWithoutFeedback {
+import {styles} from './styles';
+
+interface ButtonProps extends TouchableWithoutFeedbackProps {
   style?: ViewStyle;
+  title?: string;
 }
 
-export const Button = ({style, ...props}: ButtonProps) => {
+export const Button = ({style, title, ...props}: ButtonProps) => {
   return (
-    <TouchableOpacity style={[{backgroundColor: 'yellow'}, style]} {...props}>
-      <Text>Login</Text>
+    <TouchableOpacity style={[styles.container, style]} {...props}>
+      <Text>{title}</Text>
     </TouchableOpacity>
   );
 };

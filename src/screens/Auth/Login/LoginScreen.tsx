@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View} from 'react-native';
-import {MainView} from '../../../common';
-import {Input} from '../../../common/layout/Input/Input';
+import {MainView, Input, Button} from '../../../common';
+import {sharedStyles} from '../sharedStyles';
 
 export const LoginScreen = () => {
+  const onPressLogin = useCallback(() => {
+    console.log('Log In');
+  }, []);
+
+  const onPressRegister = useCallback(() => {
+    console.log('Register');
+  }, []);
+
   return (
-    <MainView
-      style={{
-        flex: 1,
-        backgroundColor: 'red',
-        justifyContent: 'center',
-        paddingHorizontal: 25,
-        gap: 16,
-      }}>
+    <MainView style={sharedStyles.container}>
       <Input placeholder="email" />
       <Input placeholder="password" />
-      <View></View>
+      <View style={sharedStyles.btnContainer}>
+        <Button title="Login" style={{flex: 0.5}} onPress={onPressLogin} />
+        <Button
+          title="Register"
+          style={{flex: 0.5}}
+          onPress={onPressRegister}
+        />
+      </View>
     </MainView>
   );
 };
