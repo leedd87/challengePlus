@@ -1,16 +1,10 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
+import {Breed} from '../../api/types';
+
 const DOGS_API_KEY = 'cbfb51a2-84b6-4025-a3e2-ed8616edf311';
 
-interface Breed {
-  id: string;
-  name: string;
-  image: {
-    url: string;
-  };
-}
-
-export const apiSlice = createApi({
+export const dogApiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://api.thedogapi.com/v1',
@@ -30,4 +24,17 @@ export const apiSlice = createApi({
   },
 });
 
-export const {useFetchBreedsQuery} = apiSlice;
+export const {useFetchBreedsQuery} = dogApiSlice;
+
+// export const dogApiSlice = baseApiSlice.injectEndpoints({
+//   endpoints: builder => ({
+//     fetchBreeds: builder.query<Breed[], number | void>({
+//       query: (limit = 10) => ({
+//         url: `/breeds?limit=${limit}`,
+//         method: 'GET',
+//       }),
+//     }),
+//   }),
+// });
+
+// export const {use} = dogApiSlice;

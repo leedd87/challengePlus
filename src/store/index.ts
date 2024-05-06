@@ -1,6 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {rootReducer} from './reducers';
-import {apiSlice} from './features/Dogs/dogsApiSlice';
+
+import {baseApiSlice} from './api/baseApiSlice';
 
 const getEnhancers = () => {
   if (__DEV__) {
@@ -16,7 +17,7 @@ export const store = configureStore({
   reducer: rootReducer,
 
   middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware().concat(apiSlice.middleware);
+    return getDefaultMiddleware().concat(baseApiSlice.middleware as any);
   },
 
   //ESTO ES DE REACTOTRON

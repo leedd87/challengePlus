@@ -2,9 +2,10 @@
 import {combineReducers} from '@reduxjs/toolkit';
 
 import authSlice from '../features/Auth/authSlice';
-import {apiSlice} from '../features/Dogs/dogsApiSlice';
+
+import {baseApiSlice} from '../api/baseApiSlice';
 
 export const rootReducer = combineReducers({
-  [apiSlice.reducerPath]: apiSlice.reducer,
+  [baseApiSlice.reducerPath]: baseApiSlice.reducer,
   authSlice,
 });
