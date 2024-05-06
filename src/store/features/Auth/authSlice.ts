@@ -15,7 +15,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     //authenticated
-    setAuthentication: (state, action) => {
+    setAuthentication: state => {
       //complete action => el action de aca es el token
       state.authenticated = true;
     },
@@ -26,3 +26,6 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const {setAuthentication, logOut} = authSlice.actions;
+export default authSlice.reducer;

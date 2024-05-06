@@ -6,11 +6,15 @@ import {DetailsScreen} from '../../screens';
 
 import {LoginScreen, RegisterScreen} from '../../screens/Auth';
 import {MainStackParams} from '../types';
+import {useAppSelector} from '../../store/hooks';
+import Reactotron from 'reactotron-react-native';
 
 const Stack = createStackNavigator<MainStackParams>();
 
 export const MainStackNavigator = () => {
-  const isAuth = false;
+  const isAuth = useAppSelector(state => state.authSlice.authenticated);
+
+  //const isAuth = false;
 
   return (
     <Stack.Navigator

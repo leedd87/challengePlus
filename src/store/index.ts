@@ -1,11 +1,28 @@
 import {configureStore} from '@reduxjs/toolkit';
-// ...
+import {rootReducer} from './reducers';
+import {apiSlice} from './features/Dogs/dogsApiSlice';
+
+const getEnhancers = () => {
+  if (__DEV__) {
+    import('../../ReactotronConfig').then(reactotron => {
+      return reactotron.default.createEnhancer?.();
+    });
+  }
+
+  return [];
+};
 
 export const store = configureStore({
-  reducer: {},
+  reducer: rootReducer,
+
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware().concat(apiSlice.middleware);
+  },
+
+  //ESTO ES DE REACTOTRON
+  enhancers: getDefaultEnhancers =>
+    getDefaultEnhancers().concat(getEnhancers()),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
