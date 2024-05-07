@@ -7,16 +7,12 @@ import {sharedStyles} from '../sharedStyles';
 import {NavigationType} from '../types';
 import {useAppDispatch} from '../../../store/hooks';
 import {setAuthentication} from '../../../store/features/Auth/authSlice';
-import {useFetchBreedsQuery} from '../../../store/features/Dogs/dogsApiSlice';
+
 import {useSetSignInMutation} from '../../../store/features/Auth/authApiSlice';
-import {useGetNewsQuery} from '../../../store/features/News/newsApiSlice';
 
 export const LoginScreen = () => {
   const navigation = useNavigation<NavigationType>();
   const dispatch = useAppDispatch();
-
-  const {data} = useGetNewsQuery();
-  console.log('🚀 ~ file: LoginScreen.tsx:19 ~ LoginScreen ~ data:', data);
 
   const [email, setEmail] = useState('');
 

@@ -12,9 +12,9 @@ import Reactotron from 'reactotron-react-native';
 const Stack = createStackNavigator<MainStackParams>();
 
 export const MainStackNavigator = () => {
-  const isAuth = useAppSelector(state => state.authSlice.authenticated);
+  //const isAuth = useAppSelector(state => state.authSlice.authenticated);
 
-  //const isAuth = false;
+  const isAuth = true;
 
   return (
     <Stack.Navigator
