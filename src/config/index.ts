@@ -15,3 +15,11 @@ export const getAPIBaseURL = () => {
     return 'https://stg-backoffice.multitudehealth.com';
   }
 };
+
+export const getAPINewsURL = () => {
+  if (__DEV__) {
+    return 'https://newsapi.org';
+  } else {
+    return '';
+  }
+};
