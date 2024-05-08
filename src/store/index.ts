@@ -14,6 +14,16 @@ import {rootReducer} from './reducers';
 import {baseApiSlice} from './api/baseApiSlice';
 import {dogApiSlice} from './features/Dogs/dogsApiSlice';
 import {newsApiSlice} from './features/News/newsApiSlice';
+import persistReducer from 'redux-persist/es/persistReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['authSlice'],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const getEnhancers = () => {
   if (__DEV__) {
@@ -26,7 +36,7 @@ const getEnhancers = () => {
 };
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
 
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware({
