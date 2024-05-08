@@ -1,10 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import {Header} from '../../common/layout/Header';
+import {MainView} from '../../common';
 
 export const DetailsScreen = () => {
   return (
-    <View>
-      <Text>DETAILS</Text>
-    </View>
+    <MainView>
+      <Header title="Details" hasBackBtn={true} />
+    </MainView>
   );
 };
