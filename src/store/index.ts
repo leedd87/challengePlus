@@ -1,4 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit';
+import {
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+
 import {rootReducer} from './reducers';
 
 import {baseApiSlice} from './api/baseApiSlice';
@@ -19,7 +29,11 @@ export const store = configureStore({
   reducer: rootReducer,
 
   middleware: getDefaultMiddleware => {
-    return getDefaultMiddleware()
+    return getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    })
       .concat(baseApiSlice.middleware as any)
       .concat(dogApiSlice.middleware as any)
       .concat(newsApiSlice.middleware as any);
@@ -29,6 +43,8 @@ export const store = configureStore({
   enhancers: getDefaultEnhancers =>
     getDefaultEnhancers().concat(getEnhancers()),
 });
+
+export const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
