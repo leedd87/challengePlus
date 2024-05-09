@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {NewsCardProps} from './types';
@@ -13,14 +13,14 @@ export const NewsCard = ({
 }: NewsCardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const onPressFavoriteBtn = () => {
+  const onPressFavoriteBtn = useCallback(() => {
     if (!isFavorite) {
       addFavorite?.();
     } else {
       removeFavorite?.();
     }
     setIsFavorite(!isFavorite);
-  };
+  }, [addFavorite, removeFavorite, setIsFavorite, isFavorite]);
 
   return (
     <View style={styles.container}>
