@@ -16,7 +16,7 @@ export const HomeScreen = () => {
 
   const [favoritesArticles, setFavoriteArticles] = useState<Article[]>([]);
 
-  //SETEAR GLOBALMENTE EL FAVORITOS PARA PODER SER UTILIZADO
+  //TODO SETEAR GLOBALMENTE EL FAVORITOS PARA PODER SER UTILIZADO
 
   const onPressCard = (item: Article) => {
     navigation.navigate('Details', {item});
@@ -39,11 +39,6 @@ export const HomeScreen = () => {
     );
     setFavoriteArticles(updatedFavoriteArticles);
   };
-
-  useEffect(() => {
-    console.log('NUEVOS FAVORITOS');
-    console.log(favoritesArticles.length);
-  }, [favoritesArticles]);
 
   return (
     <MainView>
