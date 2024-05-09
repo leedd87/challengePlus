@@ -1,30 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import {styles} from './styles';
+import {NewsCardProps} from './types';
 
-interface NewsCardProps {
-  title?: string;
-  content?: string;
-  author?: string;
-  onPress?: () => void;
-}
+export const NewsCard = ({
+  title,
+  content,
+  author,
+  onPress,
+  addFavorite,
+  removeFavorite,
+}: NewsCardProps) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
-export const NewsCard = ({title, content, author, onPress}: NewsCardProps) => {
+  const onPressFavoriteBtn = () => {
+    if (!isFavorite) {
+      addFavorite?.();
+    } else {
+      removeFavorite?.();
+    }
+    setIsFavorite(!isFavorite);
+  };
+
   return (
-    <View
-      key={title}
-      style={{
-        marginBottom: 20,
-        marginHorizontal: 25,
-        padding: 10,
-        gap: 8,
-        borderWidth: 1,
-        borderRadius: 10,
-      }}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={{fontWeight: 'bold', fontSize: 20}}>{title}</Text>
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
       <Text>{content}</Text>
       <Text>{author}</Text>
+      <View style={{alignItems: 'flex-end', padding: 10}}>
+        <TouchableOpacity onPress={onPressFavoriteBtn}>
+          {!isFavorite ? <Text>Favorites</Text> : <Text>Eliminar</Text>}
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
