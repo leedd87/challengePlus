@@ -19,15 +19,7 @@ export const newsSlice = createSlice({
         : [action.payload];
 
       payloadArticles.forEach(article => {
-        // if (state.value.includes(article)) {
-        //   state.value = state.value.filter(
-        //     favoriteArticle => favoriteArticle.author !== article.author,
-        //   );
-        //   console.log('-----ARTICULO REPETIDO', article.author);
-        // } else {
-
         state.value = [...state.value, article];
-        // }
       });
     },
     removeFavoriteNews: (state, action: PayloadAction<Article>) => {
@@ -42,7 +34,8 @@ export const newsSlice = createSlice({
 export const {
   favoritesNews,
   removeFavoriteNews,
-  //  addFavoriteNews
+
+  //news,
 } = newsSlice.actions;
 
 export default newsSlice.reducer;

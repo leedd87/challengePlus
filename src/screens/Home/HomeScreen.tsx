@@ -8,14 +8,16 @@ import {Article} from '../../store/features/News/types';
 import {NavigationType} from '../Auth/types';
 
 import {NewsCard} from './components/NewsCard';
-import {useAppDispatch} from '../../store/hooks';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {
   favoritesNews,
+  //news,
   removeFavoriteNews,
 } from '../../store/features/News/newsSlice';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
+
   const navigation = useNavigation<NavigationType>();
   const {data} = useGetNewsQuery(0);
   const articles = data?.articles;

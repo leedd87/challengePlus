@@ -10,8 +10,9 @@ export const NewsCard = ({
   onPress,
   addFavorite,
   removeFavorite,
+  prueba,
 }: NewsCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(prueba);
 
   const onPressFavoriteBtn = useCallback(() => {
     if (!isFavorite) {
@@ -20,7 +21,7 @@ export const NewsCard = ({
       removeFavorite?.();
     }
     setIsFavorite(!isFavorite);
-  }, [addFavorite, removeFavorite, setIsFavorite, isFavorite]);
+  }, [addFavorite, removeFavorite, isFavorite]);
 
   return (
     <View style={styles.container}>

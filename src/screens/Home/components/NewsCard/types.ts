@@ -5,4 +5,5 @@ export interface NewsCardProps {
   onPress?: () => void;
   addFavorite?: () => void;
   removeFavorite?: () => void;
+  prueba?: boolean;
 }
