@@ -13,6 +13,8 @@ export interface Article {
   title?: string;
   url?: string;
   urlToImage?: string;
+
+  favorito?: boolean;
 }
 
 export interface Source {}

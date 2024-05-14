@@ -1,9 +1,9 @@
-export interface NewsCardProps {
+import {TouchableWithoutFeedbackProps} from 'react-native';
+
+export interface NewsCardProps extends TouchableWithoutFeedbackProps {
   title?: string;
   content?: string;
   author?: string;
-  onPress?: () => void;
-  addFavorite?: () => void;
-  removeFavorite?: () => void;
-  prueba?: boolean;
+  onPressDetail?: () => void;
+  isFavorite?: boolean;
 }

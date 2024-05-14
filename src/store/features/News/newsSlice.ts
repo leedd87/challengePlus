@@ -19,23 +19,27 @@ export const newsSlice = createSlice({
         : [action.payload];
 
       payloadArticles.forEach(article => {
-        state.value = [...state.value, article];
+        const existingArticle = state.value.findIndex(
+          favArticle => favArticle.author === article.author,
+        );
+
+        if (existingArticle === -1) {
+          state.value = [
+            ...state.value,
+            {...article, favorito: true} as Article,
+          ];
+        }
       });
     },
     removeFavoriteNews: (state, action: PayloadAction<Article>) => {
       const articleToRemove = action.payload;
-      state.value = state.value.filter(
+      state.value = state.value?.filter(
         article => article.author !== articleToRemove.author,
       );
     },
   },
 });
 
-export const {
-  favoritesNews,
-  removeFavoriteNews,
-
-  //news,
-} = newsSlice.actions;
+export const {favoritesNews, removeFavoriteNews} = newsSlice.actions;
 
 export default newsSlice.reducer;

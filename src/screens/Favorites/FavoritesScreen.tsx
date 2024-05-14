@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FlatList} from 'react-native';
 import {Header, MainView} from '../../common';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
@@ -11,9 +11,12 @@ export const FavoritesScreen = () => {
 
   const favoritesNews = useAppSelector(state => state.newsSlice.value);
 
-  const removeFavoriteArticle = (item: Article) => {
-    dispatch(removeFavoriteNews(item));
-  };
+  const onPressFavoriteBtn = useCallback(
+    (item: Article) => {
+      dispatch(removeFavoriteNews(item));
+    },
+    [dispatch],
+  );
 
   return (
     <MainView>
@@ -25,8 +28,8 @@ export const FavoritesScreen = () => {
             title={item.title}
             content={item.content}
             author={item.author}
-            removeFavorite={() => removeFavoriteArticle(item)}
-            prueba={true}
+            isFavorite={true}
+            onPress={() => onPressFavoriteBtn(item)}
           />
         )}
       />

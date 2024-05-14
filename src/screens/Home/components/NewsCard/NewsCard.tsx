@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {NewsCardProps} from './types';
@@ -7,32 +7,25 @@ export const NewsCard = ({
   title,
   content,
   author,
-  onPress,
-  addFavorite,
-  removeFavorite,
-  prueba,
+  onPressDetail,
+  isFavorite,
+  ...props
 }: NewsCardProps) => {
-  const [isFavorite, setIsFavorite] = useState(prueba);
-
-  const onPressFavoriteBtn = useCallback(() => {
-    if (!isFavorite) {
-      addFavorite?.();
-    } else {
-      removeFavorite?.();
-    }
-    setIsFavorite(!isFavorite);
-  }, [addFavorite, removeFavorite, isFavorite]);
-
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPressDetail}>
         <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
       <Text>{content}</Text>
       <Text>{author}</Text>
+
       <View style={{alignItems: 'flex-end', padding: 10}}>
-        <TouchableOpacity onPress={onPressFavoriteBtn}>
-          {!isFavorite ? <Text>Favorites</Text> : <Text>Eliminar</Text>}
+        <TouchableOpacity {...props}>
+          {isFavorite === undefined ? (
+            <Text>Favorites</Text>
+          ) : (
+            <Text>Eliminar</Text>
+          )}
         </TouchableOpacity>
       </View>
     </View>
