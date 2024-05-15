@@ -28,6 +28,7 @@ export const LoginScreen = () => {
       //const result = await setSignIn({email, password}).unwrap();
       dispatch(setAuthentication());
     } catch (error) {
+      //COMMON ERROR => FAIL setSignIn() => authApiSlice
       console.log(error);
     }
   }, [
