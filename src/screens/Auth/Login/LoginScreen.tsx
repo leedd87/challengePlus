@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {MainView, Input, Button} from '../../../common';
@@ -15,29 +15,25 @@ export const LoginScreen = () => {
   const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState('');
-
   const [password, setPassword] = useState('');
 
   const [setSignIn, {isLoading}] = useSetSignInMutation();
 
   const onPressRegister = useCallback(() => {
-    console.log('Register');
     navigation.navigate('Register');
-    dispatch(setAuthentication());
-  }, [navigation, dispatch]);
+  }, [navigation]);
 
   const onPressLogin = useCallback(async () => {
     try {
-      const result = await setSignIn({email, password}).unwrap();
-      console.log(
-        '🚀 ~ file: LoginScreen.tsx:34 ~ onPressRegister ~ result:',
-        result,
-      );
-      // dispatch(setAuthentication(result));
+      //const result = await setSignIn({email, password}).unwrap();
+      dispatch(setAuthentication());
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, setSignIn]);
+  }, [
+    //email, password, setSignIn,
+    dispatch,
+  ]);
 
   return (
     <MainView style={sharedStyles.container}>

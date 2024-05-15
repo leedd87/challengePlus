@@ -25,16 +25,3 @@ export const dogApiSlice = createApi({
 });
 
 export const {useFetchBreedsQuery} = dogApiSlice;
-
-// export const dogApiSlice = baseApiSlice.injectEndpoints({
-//   endpoints: builder => ({
-//     fetchBreeds: builder.query<Breed[], number | void>({
-//       query: (limit = 10) => ({
-//         url: `/breeds?limit=${limit}`,
-//         method: 'GET',
-//       }),
-//     }),
-//   }),
-// });
-
-// export const {use} = dogApiSlice;

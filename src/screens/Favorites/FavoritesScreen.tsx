@@ -8,7 +8,6 @@ import {removeFavoriteNews} from '../../store/features/News/newsSlice';
 
 export const FavoritesScreen = () => {
   const dispatch = useAppDispatch();
-
   const favoritesNews = useAppSelector(state => state.newsSlice.value);
 
   const onPressFavoriteBtn = useCallback(

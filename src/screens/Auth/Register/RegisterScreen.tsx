@@ -9,12 +9,9 @@ import {NavigationType} from '../types';
 export const RegisterScreen = () => {
   const navigation = useNavigation<NavigationType>();
 
-  const onPressCreate = useCallback(() => {
-    console.log('Create account');
-  }, []);
+  const onPressCreate = useCallback(() => {}, []);
 
   const onPressHaveAccount = useCallback(() => {
-    console.log('Have Account');
     navigation.navigate('Login');
   }, [navigation]);
 
