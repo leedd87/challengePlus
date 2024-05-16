@@ -1,4 +1,4 @@
-import {IToken, IUser} from '../../../types';
+import {IToken} from '../../../types';
 import {baseApiSlice} from '../../api/baseApiSlice';
 import {APIMethods} from '../../api/types';
 import {ResetPasswordBodyRequest, SignInBodyRequest} from './types';
@@ -23,18 +23,8 @@ export const authApiSlice = baseApiSlice
           return response.data;
         },
       }),
-      setResetPassword: builder.mutation<IUser, ResetPasswordBodyRequest>({
-        query: body => ({
-          url: '/api/v1/auth/send_reset_password',
-          method: APIMethods.POST,
-          body,
-        }),
-        transformResponse: (response: {data: IUser}) => {
-          return response.data;
-        },
-      }),
     }),
     overrideExisting: __DEV__,
   });
 
-export const {useSetSignInMutation, useSetResetPasswordMutation} = authApiSlice;
+export const {useSetSignInMutation} = authApiSlice;

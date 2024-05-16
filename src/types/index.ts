@@ -6,14 +6,3 @@ export interface IToken {
   created_at: string;
   updated_at: string;
 }
-
-export interface IUser {
-  id: number;
-  email: string;
-  first_name: string;
-  last_name: string;
-  timezone: string;
-  locale: string;
-  created_at: string;
-  updated_at: string;
-}
