@@ -10,7 +10,7 @@ export const FavoritesScreen = () => {
   const dispatch = useAppDispatch();
   const favoritesNews = useAppSelector(state => state.newsSlice.value);
 
-  const onPressFavoriteBtn = useCallback(
+  const onPressDelete = useCallback(
     (item: Article) => {
       dispatch(removeFavoriteNews(item));
     },
@@ -28,7 +28,8 @@ export const FavoritesScreen = () => {
             content={item.content}
             author={item.author}
             isFavorite={true}
-            onPress={() => onPressFavoriteBtn(item)}
+            //onPressFavorite={() => onPressFavoriteBtn(item)}
+            onPressDelete={() => onPressDelete(item)}
           />
         )}
       />

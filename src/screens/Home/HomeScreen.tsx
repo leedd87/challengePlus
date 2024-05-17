@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
@@ -8,8 +8,11 @@ import {Article} from '../../store/features/News/types';
 import {NavigationType} from '../Auth/types';
 
 import {NewsCard} from './components/NewsCard';
-import {useAppDispatch} from '../../store/hooks';
-import {favoritesNews} from '../../store/features/News/newsSlice';
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {
+  favoritesNews,
+  removeFavoriteNews,
+} from '../../store/features/News/newsSlice';
 
 export const HomeScreen = () => {
   const dispatch = useAppDispatch();
@@ -29,6 +32,13 @@ export const HomeScreen = () => {
     [dispatch],
   );
 
+  const onPressDeleteBtn = useCallback(
+    (item: Article) => {
+      dispatch(removeFavoriteNews(item));
+    },
+    [dispatch],
+  );
+
   return (
     <MainView>
       <Header title="La Capital" />
@@ -40,7 +50,8 @@ export const HomeScreen = () => {
             content={item.content}
             author={item.author}
             onPressDetail={() => onPressCard(item)}
-            onPress={() => onPressFavoriteBtn(item)}
+            onPressFavorite={() => onPressFavoriteBtn(item)}
+            onPressDelete={() => onPressDeleteBtn(item)}
           />
         )}
       />

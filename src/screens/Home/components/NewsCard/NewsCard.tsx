@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {NewsCardProps} from './types';
@@ -8,9 +8,20 @@ export const NewsCard = ({
   content,
   author,
   onPressDetail,
+  onPressFavorite,
+  onPressDelete,
   isFavorite,
   ...props
 }: NewsCardProps) => {
+  const [disabled, setDisabled] = useState(false);
+  const [textColor, setTextColor] = useState('black');
+
+  const handlePressFavorite = () => {
+    onPressFavorite?.();
+    setDisabled(true);
+    setTextColor('red');
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPressDetail}>
@@ -20,12 +31,14 @@ export const NewsCard = ({
       <Text>{author}</Text>
 
       <View style={{alignItems: 'flex-end', padding: 10}}>
-        <TouchableOpacity {...props}>
-          {isFavorite === undefined ? (
-            <Text>Favorites</Text>
-          ) : (
-            <Text>Eliminar</Text>
-          )}
+        <TouchableOpacity
+          onPress={handlePressFavorite}
+          disabled={disabled}
+          {...props}>
+          {!isFavorite && <Text style={{color: textColor}}>Favorites</Text>}
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onPressDelete} {...props}>
+          {isFavorite && <Text>Eliminar</Text>}
         </TouchableOpacity>
       </View>
     </View>

@@ -6,4 +6,7 @@ export interface NewsCardProps extends TouchableWithoutFeedbackProps {
   author?: string;
   onPressDetail?: () => void;
   isFavorite?: boolean;
+  //TESTING
+  onPressFavorite?: () => void;
+  onPressDelete?: () => void;
 }
